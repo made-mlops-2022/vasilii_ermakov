@@ -1,0 +1,6 @@
+venv/
+metrics/metrics.json
+models/model1.pkl
+*.pyc
+.idea/
+
