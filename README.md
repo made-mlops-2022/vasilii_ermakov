@@ -55,6 +55,7 @@ coverage html --rcfile=tests/coverage_config.coveragerc
 ├── EDA                             <- notebook with research
 │   ├── heart_cleveland_upload.csv
 │   └── Heart_Disease_EDA.ipynb
+├── linters                         <- configs for linters
 ├── metrics                         <- all metrics during train will upload here
 ├── ml                              <- main package of the project with code for
 │                                      training and testing
