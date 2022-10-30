@@ -11,13 +11,10 @@
           sudo apt update
           sudo apt install python3
           cd ml_project
-          python3 -m venv venv
-          source venv/bin/activate
           pip install .
       - name: tests
         run: |
           cd ml_project
-          source venv/bin/activate
           sudo coverage run --rcfile=tests/coverage_config.coveragerc tests/tests.py
           sudo coverage report -m
           sudo coverage html --rcfile=tests/coverage_config.coveragerc
