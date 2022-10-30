@@ -58,7 +58,7 @@ coverage html --rcfile=tests/coverage_config.coveragerc
 ├── linters                         <- configs for linters
 ├── metrics                         <- all metrics during train will upload here
 ├── ml                              <- main package of the project with code for
-│                                      training and testing
+│   │                                  training and testing
 │   ├── data                        <- class for handling data
 │   ├── __init__.py
 │   ├── model                       <- main model
@@ -107,3 +107,5 @@ coverage html --rcfile=tests/coverage_config.coveragerc
     <li>В модели выделено несколько entry points: ml_train и ml_predict (1 балл);</li>
     <li>Датасет добавлен под контроль версий (1 балл);</li>
 </ul>
+
+Итого: 30 баллов.
