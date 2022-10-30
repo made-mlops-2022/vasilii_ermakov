@@ -11,6 +11,7 @@ from ml import predict
 from ml.params.pipeline_params import read_pipeline_params
 from ml.model.model import Model
 from ml.data.data import Data
+import generate_data
 
 
 def suppress_logging(func):
@@ -86,6 +87,26 @@ class MLTests(unittest.TestCase):
             model = Model(params.model_params, params.feature_params)
             model.train(data.get_train_features(), data.get_train_target())
             model.evaluate(data.get_test_target())
+
+    def test_generated_data(self):
+        generate_data.generate()
+        params = read_pipeline_params("tests/train_generated_data.yaml")
+        data = Data(
+            params.input_data_path, params.splitting_params, params.feature_params
+        )
+        model = Model(params.model_params, params.feature_params)
+        self.assertIsNone(model.prediction)
+        self.assertIsInstance(model.pipeline, Pipeline)
+        model.train(data.get_train_features(), data.get_train_target())
+        model.predict(data.get_test_features())
+        self.assertIsNotNone(model.prediction)
+        self.assertListEqual(
+            list(model.evaluate(data.get_test_target()).keys()),
+            ["accuracy", "precision", "recall", "roc_auc"]
+        )
+        self.assertEqual(model.serialize(
+            params.output_solution), "models/model1.pkl"
+        )
 
     @suppress_logging
     def test_predict(self):

@@ -8,3 +8,4 @@ predictions/*.csv
 *.egg-info
 build/
 tests/html_report/
+tests/generated_data.csv
