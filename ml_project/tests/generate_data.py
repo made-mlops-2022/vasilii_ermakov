@@ -5,8 +5,8 @@ import pandas as pd
 SIZE = 100
 
 
-def generate():
-    data = dict()
+def generate() -> None:
+    data = {}
     data["age"] = pd.Series(np.random.randint(18, 91, size=SIZE))
     data["sex"] = pd.Series(np.random.randint(0, 2, size=SIZE))
     data["cp"] = pd.Series(np.random.randint(0, 4, size=SIZE))

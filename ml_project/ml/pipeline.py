@@ -14,7 +14,7 @@ logger.setLevel(logging.INFO)
 logger.addHandler(handler)
 
 
-def run_train_pipeline(config_path: str):
+def run_train_pipeline(config_path: str) -> None:
     logger.info(f"running pipeline with configs on path: {config_path}")
     params = read_pipeline_params(config_path)
     logger.info("collecting data...")
@@ -31,7 +31,7 @@ def run_train_pipeline(config_path: str):
     logger.info(f"metrics: {metrics}")
     logger.info(f"metrics have been written to {params.output_metrics}")
 
-    with open(params.output_metrics, "w") as metrics_file:
+    with open(params.output_metrics, "w", encoding="UTF-8") as metrics_file:
         json.dump(metrics, metrics_file)
 
     path_to_model = pipeline.serialize(params.output_solution)
@@ -40,7 +40,7 @@ def run_train_pipeline(config_path: str):
 
 @click.command(name="pipeline")
 @click.argument("config_path")
-def train_pipeline_command(config_path: str):
+def train_pipeline_command(config_path: str) -> None:
     run_train_pipeline(config_path)
 
 

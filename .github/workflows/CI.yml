@@ -12,6 +12,15 @@
           sudo apt install python3
           cd ml_project
           sudo pip install .
+      - name: linters
+        run: |
+          cd ml_project
+          pylint --rcfile=linters/pylint_config.pylintrc ml
+          pylint --rcfile=linters/pylint_config.pylintrc tests/tests.py
+          pylint --rcfile=linters/pylint_config.pylintrc tests/generate_data.py
+          flake8 ml
+          flake8 tests/tests.py
+          flake8 tests/generate_data.py
       - name: tests
         run: |
           cd ml_project

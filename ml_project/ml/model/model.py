@@ -40,8 +40,12 @@ class Model:
         ])
 
         transformer = ColumnTransformer([
-            ("num_transformer", numerical_pipeline, feature_params.numerical_features),
-            ("cat_transformer", categorical_pipeline, feature_params.categorical_features)
+            ("num_transformer",
+             numerical_pipeline,
+             feature_params.numerical_features),
+            ("cat_transformer",
+             categorical_pipeline,
+             feature_params.categorical_features)
         ])
 
         self.pipeline = Pipeline([

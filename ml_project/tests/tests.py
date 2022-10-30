@@ -6,12 +6,13 @@ import unittest
 import pandas as pd
 from sklearn.pipeline import Pipeline
 
+import generate_data
+
 from ml import pipeline
 from ml import predict
 from ml.params.pipeline_params import read_pipeline_params
 from ml.model.model import Model
 from ml.data.data import Data
-import generate_data
 
 
 def suppress_logging(func):
@@ -32,7 +33,9 @@ class MLTests(unittest.TestCase):
     def test_model(self):
         params = read_pipeline_params("configs/train_config.yaml")
         data = Data(
-            params.input_data_path, params.splitting_params, params.feature_params
+            params.input_data_path,
+            params.splitting_params,
+            params.feature_params
         )
         model = Model(params.model_params, params.feature_params)
         self.assertIsNone(model.prediction)
@@ -52,7 +55,9 @@ class MLTests(unittest.TestCase):
     def test_another_model(self):
         params = read_pipeline_params("configs/train_config_2.yaml")
         data = Data(
-            params.input_data_path, params.splitting_params, params.feature_params
+            params.input_data_path,
+            params.splitting_params,
+            params.feature_params
         )
         model = Model(params.model_params, params.feature_params)
         self.assertIsNone(model.prediction)
@@ -73,7 +78,9 @@ class MLTests(unittest.TestCase):
         with self.assertRaises(NotImplementedError):
             params = read_pipeline_params("tests/wrong_config.yaml")
             _ = Data(
-                params.input_data_path, params.splitting_params, params.feature_params
+                params.input_data_path,
+                params.splitting_params,
+                params.feature_params
             )
             _ = Model(params.model_params, params.feature_params)
 
@@ -82,7 +89,9 @@ class MLTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             params = read_pipeline_params("configs/train_config.yaml")
             data = Data(
-                params.input_data_path, params.splitting_params, params.feature_params
+                params.input_data_path,
+                params.splitting_params,
+                params.feature_params
             )
             model = Model(params.model_params, params.feature_params)
             model.train(data.get_train_features(), data.get_train_target())
@@ -92,7 +101,9 @@ class MLTests(unittest.TestCase):
         generate_data.generate()
         params = read_pipeline_params("tests/train_generated_data.yaml")
         data = Data(
-            params.input_data_path, params.splitting_params, params.feature_params
+            params.input_data_path,
+            params.splitting_params,
+            params.feature_params
         )
         model = Model(params.model_params, params.feature_params)
         self.assertIsNone(model.prediction)
