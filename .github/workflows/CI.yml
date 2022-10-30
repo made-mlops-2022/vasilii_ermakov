@@ -16,6 +16,8 @@
           pip install .
       - name: tests
         run: |
+          cd ml_project
+          source venv/bin/activate
           sudo coverage run --rcfile=tests/coverage_config.coveragerc tests/tests.py
           sudo coverage report -m
           sudo coverage html --rcfile=tests/coverage_config.coveragerc
