@@ -1,0 +1,36 @@
+ name: CI
+ on: [push, pull_request]
+ jobs:
+  InstallAndTest:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: install
+        run: |
+          sudo apt update
+          sudo apt install python3
+          cd ml_project
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install .
+      - name: tests
+        run: |
+          coverage run --rcfile=tests/coverage_config.coveragerc tests/tests.py
+          coverage report -m
+          coverage html --rcfile=tests/coverage_config.coveragerc
+      - name: save_model_metric
+        uses: actions/upload-artifact@v3
+        with:
+          name: metrics
+          path: ./ml_project/metrics/metrics.json
+      - name: save_model_artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: model
+          path: ./ml_project/models/model1.pkl
+      - name: save_coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: htmlcov
+          path: ./ml_project/tests/html_report

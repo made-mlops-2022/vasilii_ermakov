@@ -1,12 +1,11 @@
-from dataclasses import dataclass, field
-
-from ml.params.data_params import DataParams
-from ml.params.feature_params import FeatureParams
-from ml.params.splitting_params import SplitParams
-from ml.params.model_params import ModelParams
+from dataclasses import dataclass
 
 from marshmallow_dataclass import class_schema
 import yaml
+
+from ml.params.feature_params import FeatureParams
+from ml.params.splitting_params import SplitParams
+from ml.params.model_params import ModelParams
 
 
 @dataclass()
@@ -23,6 +22,6 @@ PipelineParamsSchema = class_schema(PipelineParams)
 
 
 def read_pipeline_params(path: str) -> PipelineParams:
-    with open(path, "r") as config_file:
+    with open(path, "r", encoding="UTF-8") as config_file:
         schema = PipelineParamsSchema()
         return schema.load(yaml.safe_load(config_file))

@@ -1,0 +1,15 @@
+[run]
+branch = True
+source =
+    ml.pipeline
+    ml.predict
+    ml.data.data
+    ml.model.model
+    ml.params.feature_params
+    ml.params.model_params
+    ml.params.pipeline_params
+    ml.params.splitting_params
+
+
+[html]
+directory = tests/html_report

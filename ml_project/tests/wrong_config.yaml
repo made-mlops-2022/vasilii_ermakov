@@ -5,7 +5,7 @@ splitting_params:
   test_size: 0.2
   random_state: 42
 model_params:
-  model_type: "LogisticRegression"
+  model_type: "Something`s wrong"
 feature_params:
   categorical_features:
     - "sex"

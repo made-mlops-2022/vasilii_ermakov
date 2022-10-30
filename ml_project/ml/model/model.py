@@ -67,6 +67,6 @@ class Model:
         }
 
     def serialize(self, output: str) -> str:
-        with open(output, "wb") as f:
-            pickle.dump(self.pipeline, f)
+        with open(output, "wb") as file:
+            pickle.dump(self.pipeline, file)
         return output
