@@ -38,7 +38,6 @@ marshmallow-dataclass==8.5.9
 matplotlib-inline==0.1.6
 mccabe==0.7.0
 mistune==2.0.4
-ml @ file:///home/nokrolikno/MLOpsProj/vasilii_ermakov/ml_project
 mypy-extensions==0.4.3
 nbclassic==0.4.5
 nbclient==0.7.0
