@@ -13,7 +13,8 @@ setup(
     author="Your name (or your organization/company/team)",
     entry_points={
         "console_scripts": [
-            "ml_train = ml.pipeline:train_pipeline_command"
+            "ml_train = ml.pipeline:train_pipeline_command",
+            "ml_predict = ml.predict:predict_command"
         ]
     },
     install_requires=required,

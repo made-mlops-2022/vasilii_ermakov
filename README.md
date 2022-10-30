@@ -1,7 +1,7 @@
 # Homework 1
 ## Ермаков Василий
 <p>
-    Production-ready проект для обучения и предсказания сердечных заболеваний.
+    Production-ready проект для обучения модели и предсказания сердечных заболеваний.
     <br />
     Использование с помощью коммандной строки.
 </p>
@@ -17,20 +17,24 @@ pip install .
 ### Использование. Обучение
 ```commandline
 python3 ml/pipeline.py <путь до конфига>
+or
+ml_train <путь до конфига>
 ```
 <p>Пример:</p>
 
 ```commandline
-python3 ml/pipeline.py configs/train_config.yaml
+ml_train configs/train_config.yaml
 ```
 ### Использование. Предсказание
 ```commandline
-python3 ml/predict.py <путь до фичей> <путь до модели> [-o <путь вывода>]>
+python3 ml/predict.py <путь до фичей> <путь до модели> [-o <путь вывода>]
+or
+ml_predict <путь до фичей> <путь до модели> [-o <путь вывода>]
 ```
 <p>Пример:</p>
 
 ```commandline
-python3 ml/predict.py data/test.csv models/model1.pkl -o predictions/my_predict.csv
+ml_predict data/test.csv models/model1.pkl -o predictions/my_predict.csv
 ```
 Предупреждение: По умолчанию ```data/test.csv``` совпадает с ```data/train.csv```
 
