@@ -16,9 +16,9 @@
           pip install .
       - name: tests
         run: |
-          coverage run --rcfile=tests/coverage_config.coveragerc tests/tests.py
-          coverage report -m
-          coverage html --rcfile=tests/coverage_config.coveragerc
+          sudo coverage run --rcfile=tests/coverage_config.coveragerc tests/tests.py
+          sudo coverage report -m
+          sudo coverage html --rcfile=tests/coverage_config.coveragerc
       - name: save_model_metric
         uses: actions/upload-artifact@v3
         with:
