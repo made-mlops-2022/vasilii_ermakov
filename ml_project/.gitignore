@@ -1,0 +1,11 @@
+venv/
+metrics/metrics.json
+models/model1.pkl
+predictions/*.csv
+*.pyc
+.idea/
+.coverage
+*.egg-info
+build/
+tests/html_report/
+tests/generated_data.csv

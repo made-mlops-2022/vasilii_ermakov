@@ -1,0 +1,44 @@
+ name: CI
+ on: [push, pull_request]
+ jobs:
+  InstallAndTest:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: install
+        run: |
+          sudo apt update
+          sudo apt install python3
+          cd ml_project
+          sudo pip install .
+      - name: linters
+        run: |
+          cd ml_project
+          pylint --rcfile=linters/pylint_config.pylintrc ml
+          pylint --rcfile=linters/pylint_config.pylintrc tests/tests.py
+          pylint --rcfile=linters/pylint_config.pylintrc tests/generate_data.py
+          flake8 ml
+          flake8 tests/tests.py
+          flake8 tests/generate_data.py
+      - name: tests
+        run: |
+          cd ml_project
+          sudo coverage run --rcfile=tests/coverage_config.coveragerc tests/tests.py
+          sudo coverage report -m
+          sudo coverage html --rcfile=tests/coverage_config.coveragerc
+      - name: save_model_metric
+        uses: actions/upload-artifact@v3
+        with:
+          name: metrics
+          path: ./ml_project/metrics/metrics.json
+      - name: save_model_artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: model
+          path: ./ml_project/models/model1.pkl
+      - name: save_coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: htmlcov
+          path: ./ml_project/tests/html_report
