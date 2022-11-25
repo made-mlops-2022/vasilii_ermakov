@@ -1,0 +1,6 @@
+.idea/
+.venv/
+.build/
+.pytest_cache/
+.rest_service.egg-info/
+rest_service/model1.pkl
